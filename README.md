@@ -2,6 +2,9 @@
 A semi-automatic git commit message crafter.
 
 # Prerequisites
+
+## Clone the repo
+
 ## Setup python virtual environment.
 `python3 -m venv /dir/of/cloned/repo`
 
@@ -12,7 +15,11 @@ A semi-automatic git commit message crafter.
 
 # Setup
 Create an shell alias.
-`echo -e "\n# semi-auto-git-commit\nalias git-commit='/dir/of/cloned/semi-auto-git-commit/bin/python3 /dir/of/cloned/semi-auto-git-commit/main.py'" >> ~/.zshrc`
+Add to your .zshrc or .bashrc file something like the following.
+```
+# semi-auto-git-commit
+alias git-commit='/path/to/venv/bin/python3 /path/to/venv/main.py'
+```
 
 # Usage
-Go into your git repo with staged files and run your alias or run the script itself!
+Go into your git repo with staged files and run your alias!
