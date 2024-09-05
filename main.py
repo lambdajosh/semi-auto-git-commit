@@ -1,7 +1,15 @@
+from halo import Halo
 from openai import OpenAI
 import os
 import subprocess
 import sys
+
+def is_set_env_variable(env_var_name):
+    """Ensure that the specified environment variable is set."""
+    value = os.getenv(env_var_name)
+    if value is None:
+        raise EnvironmentError(f"Required environment variable '{env_var_name}' is not set.")
+    return value
 
 def is_git_repo():
     """Check if the current directory is inside a Git repository."""
@@ -15,18 +23,18 @@ def has_staged_commits():
 
 def main():
 
-    # Get API Key from OS env
-    API_KEY = os.getenv('LAMBDA_CHAT_API_KEY')
-    API_BASE = "https://api.lambdalabs.com/v1"
+    # Create and start a spinner
+    spinner = Halo(text='Processing', spinner='dots')
+    spinner.start()
 
     # Setup client
     client = OpenAI(
-      api_key=API_KEY,
-      base_url=API_BASE,
+      api_key=is_set_env_variable("SEMI_AUTO_API_KEY"),
+      base_url=is_set_env_variable("SEMI_AUTO_API_URL"),
     )
 
     # The model to use
-    MODEL = "hermes-3-llama-3.1-405b-fp8"
+    MODEL = is_set_env_variable("SEMI_AUTO_API_MODEL")
     
     # Check that we're in a Git repo
     if not is_git_repo():
@@ -63,8 +71,8 @@ def main():
       model=MODEL,
     )
 
-    # The first response from the model
-    #print(response.choices[0].text)
+    # We are ready to provide the commit message
+    spinner.succeed('Done')
 
     # Commit with the generated message
     subprocess.run(['git', 'commit', '-e', '-m', response.choices[0].text])
