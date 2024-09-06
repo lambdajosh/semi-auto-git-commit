@@ -21,6 +21,7 @@ SEMI_AUTO_API_MODEL=<API_MODEL>
 
 ## Install openai python api library
 `/dir/of/cloned/repo/bin/pip install openai`
+
 `/dir/of/clone/repo/bin/pip install halo`
 
 ## Have a git repo with staged files
