@@ -7,24 +7,30 @@ This should be compatible with all API endpoints that follow the [OpenAI OpenAPI
 
 # Prerequisites
 
-## Clone the repo
+## 1. Clone the repo
 
-## Setup environment variables
+## 2. Setup environment variables
 ```
 SEMI_AUTO_API_KEY=<API_KEY>
 SEMI_AUTO_API_URL=<API_URL>
 SEMI_AUTO_API_MODEL=<API_MODEL>
 ```
 
-## Setup python virtual environment.
-`python3 -m venv /dir/of/cloned/repo`
+## 3a. Manual python virtual environment Setup
 
-## Install openai python api library
-`/dir/of/cloned/repo/bin/pip install openai`
+1. Setup python virtual environment.
+    - `python3 -m venv /dir/of/cloned/repo`
 
-`/dir/of/clone/repo/bin/pip install halo`
+1. Install openai python api library
+    - `/dir/of/cloned/repo/bin/pip install openai`
+    - `/dir/of/clone/repo/bin/pip install halo`
 
-## Have a git repo with staged files
+## 3b. Tox python virtual environment
+You can forgo the previous 2 steps and have tox create the venv and install the dependencies for you.
+
+Run `tox -e venv` in the root of this repo.
+
+## 4. Have a git repo with staged files
 
 # Setup
 Create an shell alias.
